@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+:root {
+    --bg-color: #111111;
+    --soteria-blue: #20719b;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1200px;
+    height: 100%;
+    border: white 2px solid;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    background-color: var(--bg-color);
+    color: var(--soteria-blue);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+main {
+    margin: auto;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
