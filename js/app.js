@@ -33,35 +33,6 @@ function requestLocationPermission() {
     }
 }
 
-// Start location tracking
-// function startTrackingLocation() {
-//     if ('geolocation' in navigator) {
-//         const watchId = navigator.geolocation.watchPosition(
-//             position => {
-//                 latitude = position.coords.latitude;
-//                 longitude = position.coords.longitude;
-//                 console.log('Updated Latitude:', latitude);
-//                 console.log('Updated Longitude:', longitude);
-//
-//                 // Update UI with the updated position
-//                 updateLocationDisplay();
-//             },
-//             error => {
-//                 console.error('Error watching location:', error.message);
-//                 updateLocationDisplay(failed=true);
-//             },
-//             {
-//                 enableHighAccuracy: true,
-//                 maximumAge: 0,
-//                 timeout: 5000
-//             }
-//         );
-//
-//         // Stop tracking when needed
-//         // navigator.geolocation.clearWatch(watchId);
-//     }
-// }
-
 function sendLocationToServer(latitude, longitude) {
     fetch('/update-location', {
         method: 'POST',

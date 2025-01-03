@@ -10,7 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 1100px;
     height: 100%;
     border: white 2px solid;
     font-family: "Geist", sans-serif;
@@ -37,6 +37,7 @@ nav {
 
 h1 {
     margin-top: 5vh;
+    font-size: xxx-large;
 }
 
 #success {
@@ -48,13 +49,20 @@ h1 {
 }
 
 #floorplan-container {
+    display: flex;
+    justify-content: center;
     position: relative;
-    width: 80vh;
+    height: 75vh;
+    vertical-align: center;
+    line-height: 80vh;
 }
 
 #floorplan {
+    border: 1px solid red;
+    align-items: center;
+    height: 90%;
     width: 100%;
-    max-height: 80%;
+
 }
 
 .overlay {
