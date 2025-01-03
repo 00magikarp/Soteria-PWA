@@ -77,17 +77,17 @@ function updateLocationDisplay(failed=false) {
 
     if (locationBox) {
         if (!failed) {
-            locationBox.innerHTML = `<span id="success">${latitude}, ${longitude}</span>`;
+            locationBox.innerHTML = `<span id="success">You're being protected!</span>`;
         } else {
-            locationBox.innerHTML = `<span id="failure"">Not found</span>`
+            locationBox.innerHTML = `<span id="failure"">Location not shared!</span>`
         }
     }
 
-    if (mapImg) {
-        if (!failed) {
-            mapImg.innerHTML = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=20&size=500x500">`
-        }
-    }
+    // if (mapImg) {
+    //     if (!failed) {
+    //         mapImg.innerHTML = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=20&size=500x500">`
+    //     }
+    // }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
