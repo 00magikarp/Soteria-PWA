@@ -5,29 +5,39 @@ fetch(jsonPath)
     .then(data => {
         const container = document.getElementById("floorplan-container");
         const floorplan = document.getElementById("floorplan");
-        const totalWidth = floorplan.width;
-        const totalHeight = floorplan.height;
-        console.log(totalWidth);
-        console.log(totalHeight);
 
-        data.cameras.forEach(camera => {
-            const x = parseFloat(camera.x) * totalWidth;
-            const y = parseFloat(camera.y) * totalHeight;
+        function positionDots() {
+            // Get the current dimensions of the image
+            const renderedWidth = floorplan.offsetWidth;
+            const renderedHeight = floorplan.offsetHeight;
 
-            const dot = document.createElement("img");
-            dot.src = "assets/reddot.png";
-            dot.classList.add("overlay");
+            // Clear existing dots
+            const existingDots = document.querySelectorAll(".overlay");
+            existingDots.forEach(dot => dot.remove());
 
-            // Position the dot
-            dot.style.left = `${x}px`;
-            dot.style.top = `${y}px`;
+            // Add dots
+            data.cameras.forEach(camera => {
+                const x = parseFloat(camera.x) * renderedWidth;
+                const y = parseFloat(camera.y) * renderedHeight;
 
-            // Add the dot to the container
-            container.appendChild(dot);
-        });
+                const dot = document.createElement("img");
+                dot.src = "assets/reddot.png";
+                dot.classList.add("overlay");
+
+                // Position the dot
+                dot.style.left = `${x}px`;
+                dot.style.top = `${y}px`;
+
+                // Add the dot to the container
+                container.appendChild(dot);
+            });
+        }
+
+        // Position dots on load and when the window is resized
+        positionDots();
+        window.addEventListener("resize", positionDots);
     })
     .catch(error => console.error("Error loading JSON:", error));
-
 document.addEventListener('DOMContentLoaded', () => {
 
 });

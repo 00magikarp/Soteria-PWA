@@ -35,9 +35,28 @@ nav {
     align-items: center;
 }
 
+header {
+    overflow: hidden;
+    height: 25vh;
+    width: 100vw;
+}
+
 h1 {
-    margin-top: 5vh;
+    padding-top: 2vh;
     font-size: xxx-large;
+}
+
+h1, h2{
+    margin-top: 4vh;
+}
+
+h3 {
+    margin-top: 5vh;
+}
+
+a {
+    color: lightgray;
+    text-decoration: none;
 }
 
 #success {
@@ -53,22 +72,91 @@ h1 {
     justify-content: center;
     position: relative;
     height: 75vh;
-    vertical-align: center;
-    line-height: 80vh;
+    width: 90%;
+}
+
+#map {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 90%;
+    height: 70vh;
 }
 
 #floorplan {
-    border: 1px solid red;
-    align-items: center;
+    border: 2px solid var(--soteria-blue);
     height: 90%;
-    width: 100%;
-
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .overlay {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 0;
-    left: 0;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+}
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 30vw;
+    background-color: var(--soteria-blue);
+    color: #fff;
+    text-align: center;
+    font-size: medium;
+    font-weight: normal;
+    border-radius: 6px;
+    padding: 1vw;
+    position: absolute;
+    line-height: 2vh;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--soteria-blue) transparent transparent transparent;
+}
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+.map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#infoIcon {
+    width: 1.5rem;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }

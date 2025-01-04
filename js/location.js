@@ -8,7 +8,7 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.error('Service Worker registration failed:', err));
 }
 
-function requestLocationPermission() {
+export function requestLocationPermission(callback) {
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -16,22 +16,24 @@ function requestLocationPermission() {
                 longitude = position.coords.longitude;
                 console.log('Permission granted.');
                 console.log('Latitude:', latitude);
+                console.log(position.coords.latitude);
                 console.log('Longitude:', longitude);
+                console.log(position.coords.longitude);
                 updateLocationDisplay();
 
-                // // Start tracking location
-                // startTrackingLocation();
+                if (callback) callback(latitude, longitude);
             },
             error => {
                 console.error('Error requesting location permission:', error.message);
-                updateLocationDisplay(failed=true);
+                updateLocationDisplay(true);
             }
         );
     } else {
         console.log('Geolocation is not supported by this browser.');
-        updateLocationDisplay(failed=true);
+        updateLocationDisplay(true);
     }
 }
+
 
 function sendLocationToServer(latitude, longitude) {
     fetch('/update-location', {
@@ -44,7 +46,6 @@ function sendLocationToServer(latitude, longitude) {
 // Function to update the UI
 function updateLocationDisplay(failed=false) {
     const locationBox = document.getElementById('location');
-    const mapImg = document.getElementById("map");
 
     if (locationBox) {
         if (!failed) {
@@ -53,12 +54,14 @@ function updateLocationDisplay(failed=false) {
             locationBox.innerHTML = `<span id="failure"">Location not shared!</span>`
         }
     }
+}
 
-    // if (mapImg) {
-    //     if (!failed) {
-    //         mapImg.innerHTML = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=20&size=500x500">`
-    //     }
-    // }
+export function getLatitude() {
+    return latitude;
+}
+
+export function getLongitude() {
+    return longitude;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

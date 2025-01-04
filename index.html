@@ -6,14 +6,23 @@
     <title>Soteria</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js"></script>
+    <script src="js/location.js"></script>
     <script src="js/floorplan.js"></script>
+    <script src="js/infobox.js"></script>
 </head>
 <body>
-<header style="height: 25vh">
+<header>
     <h1>Soteria</h1>
-    <h2 id="location">Loading...</h2>
-    <h2> <a href="map.html">View local map...</a></h2>
+    <h2 id="location">Checking if you're protected...</h2>
+    <h2>
+        <div class="map-link">
+            <a href="map.html">View local map...</a>
+            <span class="popup" onclick="toggleInfo()">
+                <img src="assets/info.png" id="infoIcon" alt="Info Icon">
+                <span class="popuptext" id="myPopup">Floormap is recommended if you are nearby or familiar with the building. If not, it is highly encouraged to use a local map of the surrounding area.</span>
+            </span>
+        </div>
+    </h2>
 </header>
 <div id="floorplan-container">
     <img id="floorplan" src="assets/floorplan.jpg" alt="Floorplan">
