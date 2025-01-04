@@ -1,5 +1,5 @@
-let latitude = 0;
-let longitude = 0;
+let latitude = null;
+let longitude = null;
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
@@ -9,6 +9,13 @@ if ('serviceWorker' in navigator) {
 }
 
 export function requestLocationPermission(callback) {
+    if (latitude !== null && longitude !== null) {
+        console.log('Location already available:', latitude, longitude);
+        if (callback) callback(latitude, longitude);
+        return;
+    }
+
+    // Fetch location if not already available
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -16,9 +23,7 @@ export function requestLocationPermission(callback) {
                 longitude = position.coords.longitude;
                 console.log('Permission granted.');
                 console.log('Latitude:', latitude);
-                console.log(position.coords.latitude);
                 console.log('Longitude:', longitude);
-                console.log(position.coords.longitude);
                 updateLocationDisplay();
 
                 if (callback) callback(latitude, longitude);
@@ -34,24 +39,14 @@ export function requestLocationPermission(callback) {
     }
 }
 
-
-function sendLocationToServer(latitude, longitude) {
-    fetch('/update-location', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ latitude, longitude })
-    }).then(response => console.log('Location sent:', response));
-}
-
-// Function to update the UI
-function updateLocationDisplay(failed=false) {
+function updateLocationDisplay(failed = false) {
     const locationBox = document.getElementById('location');
 
     if (locationBox) {
         if (!failed) {
             locationBox.innerHTML = `<span id="success">You're being protected!</span>`;
         } else {
-            locationBox.innerHTML = `<span id="failure"">Location not shared!</span>`
+            locationBox.innerHTML = `<span id="failure">Location not shared!</span>`;
         }
     }
 }
@@ -63,7 +58,3 @@ export function getLatitude() {
 export function getLongitude() {
     return longitude;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    requestLocationPermission();
-});

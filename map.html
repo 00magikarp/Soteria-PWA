@@ -6,8 +6,6 @@
     <title>Soteria</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/location.js"></script>
-    <script src="js/map.js"></script>
     <script src="js/infobox.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -33,30 +31,37 @@
 
     requestLocationPermission((user_x, user_y) => {
         // TODO: change to real
-        const threat_x = 39.147615197626756;
-        const threat_y = -77.22947605808876;
+        const threat_x = 39.22103445883628;
+        const threat_y = -77.2436725250868;
         const midpoint_x = (user_x + threat_x) / 2;
         const midpoint_y = (user_y + threat_y) / 2;
         console.log("mid", midpoint_x, midpoint_y);
         const distance = Math.sqrt(Math.pow(user_x - threat_x, 2) + Math.pow(user_y - threat_y, 2));
 
-        const zoom = 2.01 / Math.pow(distance, 0.48);
+        const zoom = 2.4919 / (distance + 0.1443) + 131678.583 * Math.exp(-2917.715 * distance);
         const map = L.map('map').setView([midpoint_x, midpoint_y], zoom); // Latitude, Longitude, Zoom
         console.log(distance, zoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        const gunIcon = L.icon({
-            iconUrl: 'assets/reddot.png',
-            iconSize: [30, 40],
+        const bluePin = L.icon({
+            iconUrl: 'assets/bluepin.png',
+            iconSize: [30, 30],
             iconAnchor: [15, 40],
             popupAnchor: [0, -40]
         });
 
-        const userMarker = L.marker([user_x, user_y]).addTo(map);
+        const redPin = L.icon({
+            iconUrl: 'assets/redpin.png',
+            iconSize: [30, 30],
+            iconAnchor: [15, 40],
+            popupAnchor: [0, -40]
+        });
+
+        const userMarker = L.marker([user_x, user_y], {icon: bluePin}).addTo(map);
         userMarker.bindPopup('<b>Current Location</b>');
-        const threatMarker = L.marker([threat_x, threat_y], {icon: gunIcon }).addTo(map);
+        const threatMarker = L.marker([threat_x, threat_y], {icon: redPin }).addTo(map);
         threatMarker.bindPopup('<b>Detected Threat</b>');
     });
 </script>

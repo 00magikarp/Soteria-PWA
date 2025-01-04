@@ -72,7 +72,7 @@ a {
     justify-content: center;
     position: relative;
     height: 75vh;
-    width: 90%;
+    width: auto;
 }
 
 #map {
@@ -86,15 +86,14 @@ a {
 #floorplan {
     border: 2px solid var(--soteria-blue);
     height: 90%;
-    width: auto;
     max-height: 100%;
     max-width: 100%;
 }
 
 .overlay {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 4vw;
+    height: auto;
     transform: translate(-50%, -50%);
 }
 
@@ -115,7 +114,7 @@ a {
     border-radius: 6px;
     padding: 1vw;
     position: absolute;
-    line-height: 2vh;
+    line-height: 2.2vh;
     z-index: 1;
     bottom: 125%;
     left: 50%;
