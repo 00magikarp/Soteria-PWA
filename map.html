@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soteria</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/infobox.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/infobox.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
@@ -16,9 +16,9 @@
     <h2 id="location">Checking if you're protected...</h2>
     <h2>
         <div class="map-link">
-            <a href="index.html">Return to floormap...</a>
+            <a href="./index.html">Return to floormap...</a>
             <span class="popup" onclick="toggleInfo()">
-                <img src="assets/info.png" id="infoIcon" alt="Info Icon">
+                <img src="./assets/info.png" id="infoIcon" alt="Info Icon">
                 <span class="popuptext" id="myPopup">Local map is recommended if you are unfamiliar with the building or are just in the surrounding area. If you are able to, it is highly encouraged to use the floormap.</span>
             </span>
         </div>
@@ -31,14 +31,13 @@
 
     requestLocationPermission((user_x, user_y) => {
         // TODO: change to real
-        const threat_x = 39.22103445883628;
-        const threat_y = -77.2436725250868;
+        const threat_x = -25.566351910075227;
+        const threat_y = 45.33254586701752;
         const midpoint_x = (user_x + threat_x) / 2;
         const midpoint_y = (user_y + threat_y) / 2;
-        console.log("mid", midpoint_x, midpoint_y);
         const distance = Math.sqrt(Math.pow(user_x - threat_x, 2) + Math.pow(user_y - threat_y, 2));
 
-        const zoom = 2.4919 / (distance + 0.1443) + 131678.583 * Math.exp(-2917.715 * distance);
+        const zoom = 3.44 / Math.pow(distance, 0.38) * Math.exp(-3.46 * Math.pow(10, -22) * distance);
         const map = L.map('map').setView([midpoint_x, midpoint_y], zoom); // Latitude, Longitude, Zoom
         console.log(distance, zoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -62,7 +61,7 @@
         const userMarker = L.marker([user_x, user_y], {icon: bluePin}).addTo(map);
         userMarker.bindPopup('<b>Current Location</b>');
         const threatMarker = L.marker([threat_x, threat_y], {icon: redPin }).addTo(map);
-        threatMarker.bindPopup('<b>Detected Threat</b>');
+        threatMarker.bindPopup('<b>Detected Threat</b>').openPopup();
     });
 </script>
 </body>

@@ -92,7 +92,7 @@ a {
 
 .overlay {
     position: absolute;
-    width: 4vw;
+    width: 30px;
     height: auto;
     transform: translate(-50%, -50%);
 }

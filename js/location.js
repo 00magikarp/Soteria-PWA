@@ -3,7 +3,7 @@ let longitude = null;
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('/service-worker.js')
+        .register('../service-worker.js')
         .then(() => console.log('Service Worker registered'))
         .catch(err => console.error('Service Worker registration failed:', err));
 }
@@ -15,7 +15,6 @@ export function requestLocationPermission(callback) {
         return;
     }
 
-    // Fetch location if not already available
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -49,12 +48,4 @@ function updateLocationDisplay(failed = false) {
             locationBox.innerHTML = `<span id="failure">Location not shared!</span>`;
         }
     }
-}
-
-export function getLatitude() {
-    return latitude;
-}
-
-export function getLongitude() {
-    return longitude;
 }
