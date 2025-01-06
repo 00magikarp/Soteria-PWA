@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const floorplan = document.getElementById("floorplan");
 
             function positionDots() {
+                const containerBox = container.getBoundingClientRect();
                 const floorplanBox = floorplan.getBoundingClientRect();
                 const width = floorplanBox.width;
                 const height = floorplanBox.height;
@@ -16,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 existingDots.forEach(dot => dot.remove());
 
                 data.cameras.forEach(camera => {
-                    const x = parseFloat(camera.x) * width;
-                    const y = parseFloat(camera.y) * height;
+                    const x = parseFloat(camera.x) * width + floorplanBox.x - containerBox.x;
+                    const y = parseFloat(camera.y) * height + floorplanBox.y - containerBox.y;
 
                     const dot = document.createElement("img");
                     dot.src = "../assets/reddot.svg";

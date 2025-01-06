@@ -20,9 +20,6 @@ export function requestLocationPermission(callback) {
             position => {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                console.log('Permission granted.');
-                console.log('Latitude:', latitude);
-                console.log('Longitude:', longitude);
                 updateLocationDisplay();
 
                 if (callback) callback(latitude, longitude);
@@ -30,11 +27,13 @@ export function requestLocationPermission(callback) {
             error => {
                 console.error('Error requesting location permission:', error.message);
                 updateLocationDisplay(true);
+                callback(null, null);
             }
         );
     } else {
         console.log('Geolocation is not supported by this browser.');
         updateLocationDisplay(true);
+        callback(null, null);
     }
 }
 
