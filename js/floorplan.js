@@ -1,4 +1,4 @@
-const jsonPath = "../assets/sample_floormap.json";
+const jsonPath = "/assets/sample_floormap.json";
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch(jsonPath)
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const y = parseFloat(camera.y) * height + floorplanBox.y - containerBox.y;
 
                     const dot = document.createElement("img");
-                    dot.src = "../assets/reddot.svg";
+                    dot.src = "/assets/reddot.svg";
                     dot.classList.add("overlay");
                     dot.style.left = `${x}px`;
                     dot.style.top = `${y}px`;
