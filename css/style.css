@@ -117,7 +117,7 @@ a {
 .modal {
     display: none;
     position: absolute;
-    z-index: 2;
+    z-index: 100000;
     left: 0;
     top: 0;
     width: 100%;
