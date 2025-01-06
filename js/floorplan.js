@@ -1,4 +1,4 @@
-const jsonPath = "./assets/sample_floormap.json";
+const jsonPath = "../assets/sample_floormap.json";
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch(jsonPath)
