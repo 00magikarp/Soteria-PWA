@@ -10,8 +10,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    max-width: 1100px;
-    height: 100%;
+    max-width: 1000px;
+    height: 100vh;
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
     background-color: var(--bg-color);
