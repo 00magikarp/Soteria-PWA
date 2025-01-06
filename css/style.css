@@ -7,6 +7,7 @@
 
 body {
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     max-width: 1000px;
@@ -73,7 +74,7 @@ a {
     width: 100%;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    height: auto;
+    height: 70vh;
     max-height: 75vh;
     overflow: visible;
 }
