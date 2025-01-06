@@ -7,7 +7,6 @@
 
 body {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     max-width: 1000px;
@@ -71,7 +70,7 @@ a {
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 90%;
+    width: 100%;
     padding-top: 2vh;
     padding-bottom: 2vh;
     height: auto;
@@ -90,6 +89,7 @@ a {
 #floorplan {
     border: 2px solid var(--soteria-blue);
     max-width: 95%;
+    max-height: 70vh;
     height: auto;
     width: auto;
     object-fit: contain;
