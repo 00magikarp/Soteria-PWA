@@ -7,14 +7,8 @@
     {
       "camera": "one",
       "identifier": "rtsp://127.0.0.1:554/stream",
-      "x": "1",
-      "y": "1"
-    },
-    {
-    "camera": "two",
-    "identifier": "rtsp://127.0.0.1:554/stream2",
-    "x": "0",
-    "y": "0"
+      "x": "0.5",
+      "y": "0.5"
     }
   ]
 }

@@ -76,7 +76,7 @@ a {
     padding-bottom: 2vh;
     height: auto;
     max-height: 75vh;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #map {
@@ -89,8 +89,7 @@ a {
 
 #floorplan {
     border: 2px solid var(--soteria-blue);
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 95%;
     height: auto;
     width: auto;
     object-fit: contain;
@@ -102,6 +101,8 @@ a {
     width: 30px;
     height: auto;
     transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 #infoBox {
@@ -114,8 +115,8 @@ a {
 
 .modal {
     display: none;
-    position: fixed;
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
     left: 0;
     top: 0;
     width: 100%;
